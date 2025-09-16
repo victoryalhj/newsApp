@@ -1,0 +1,41 @@
+.head-line {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+}
+.head-line svg {
+  width: 430px;
+}
+
+/* Menus */
+.menus {
+  margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-top: 1px solid grey;
+  border-bottom: 4px double gray;
+}
+.menus button {
+  border: none;
+  background: none;
+  margin: 5px;
+}
+.menus button:hover {
+  background-color: aquamarine;
+}
+
+/* News */
+.news-img-size {
+  max-width: 100%;
+  max-height: 250px;
+}
+.news {
+  border-bottom: 1px solid  black;
+  padding: 1rem;
+}
+
+/* Responsive */
+@media (max-width:390px) {
+  
+}
