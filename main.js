@@ -1,4 +1,5 @@
 let news = []
+const PAGE_SIZE = 20;
 
 const getLatestNews = async() => {
   const url = new URL(
