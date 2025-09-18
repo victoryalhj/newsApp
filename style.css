@@ -6,8 +6,27 @@
 .head-line svg {
   width: 430px;
 }
+/* Header */
+.header {
+  display: flex;
+  text-align: center;
+}
+.fa-solid {
+  font-size: 20px;
+  margin-top: 10px;
+}
+.search-input {
+  display: none;
+
+}
+.search-input.active {
+  display: inline-block;
+}
 
 /* Menus */
+.hamburger {
+  display: none;
+}
 .menus {
   margin-top: 1em;
   display: flex;
@@ -25,6 +44,32 @@
   background-color: aquamarine;
 }
 
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 200px;
+  height: 100%;
+  background-color: gray;
+  z-index: 1;
+}
+.side-menu.open{
+  left: 0;
+}
+.side-menu button {
+  display: block;
+  width: 100%;
+  border: none;
+  margin: 20px 0;
+  background: none;
+}
+.close-btn {
+  /* position: absolute; */
+  top: 10px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
 /* News */
 .news-img-size {
   max-width: 100%;
@@ -37,5 +82,17 @@
 
 /* Responsive */
 @media (max-width:390px) {
-  
+  .hamburger {
+    display: block;
+    border: none;
+    background: none;
+    font-size: 24px;
+  }
+
+  .menus {
+    display: none;
+  }
+  .side-menu {
+
+  }
 }
