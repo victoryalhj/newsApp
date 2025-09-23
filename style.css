@@ -10,6 +10,7 @@
 .header {
   display: flex;
   text-align: center;
+  margin-top: 10px;
 }
 .fa-solid {
   font-size: 20px;
@@ -17,13 +18,16 @@
 }
 .search-input {
   display: none;
-
+  margin: 5px 0 0 10px;
 }
 .search-input.active {
   display: inline-block;
 }
 
 /* Menus */
+.header {
+  margin: 5px;
+}
 .hamburger {
   display: none;
 }
@@ -44,19 +48,10 @@
   background-color: aquamarine;
 }
 
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  width: 200px;
-  height: 100%;
-  background-color: gray;
-  z-index: 1;
+.side-menus {
+  display: none;
 }
-.side-menu.open{
-  left: 0;
-}
-.side-menu button {
+.side-menus button {
   display: block;
   width: 100%;
   border: none;
@@ -89,10 +84,22 @@
     font-size: 24px;
   }
 
+
   .menus {
     display: none;
   }
-  .side-menu {
-
+  .side-menus {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 200px;
+    height: 100%;
+    background-color: rgb(175, 175, 175);
+    z-index: 1;
+    transition: left 0.3s ease;
   }
+  .side-menus.open{
+  left: 0;
+}
 }

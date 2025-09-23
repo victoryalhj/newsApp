@@ -3,8 +3,13 @@ const PAGE_SIZE = 20;
 const searchIcon = document.querySelector('.fa-magnifying-glass')
 const searchInput = document.querySelector('.search-input')
 const hamburger = document.querySelector('.hamburger')
-const sideMenu = document.querySelector('.side-menu')
+const sideMenus = document.querySelector('.side-menus')
 const closeBtn = document.querySelector('.close-btn')
+const menus = document.querySelectorAll('.menus button')
+const sideMenusBtn = document.querySelectorAll('.side-menus button')
+menus.forEach(menu=>menu.addEventListener('click',(event)=>{getNewsByCategory(event)}))
+sideMenusBtn.forEach(button=>button.addEventListener('click',(event)=>{getNewsByCategory(event)}))
+// console.log('mmm',menus)
 
 searchIcon.addEventListener('click',()=>{
   searchInput.classList.toggle('active');
@@ -13,11 +18,11 @@ searchIcon.addEventListener('click',()=>{
   }})
 
 hamburger.addEventListener('click', ()=>{
-  sideMenu.classList.toggle('open')
+  sideMenus.classList.toggle('open')
 })
 
 closeBtn.addEventListener('click', ()=>{
-  sideMenu.classList.remove('open')
+  sideMenus.classList.remove('open')
 })
 
 function daysAgo(dateString) {
@@ -42,6 +47,9 @@ const getLatestNews = async() => {
   console.log('ddd',newsList);
 };
 
+const getNewsByCategory = (event) => {
+  console.log('category',getNewsByCategory)
+}
 
 const render =()=> {
   const newsHTML = newsList.map(news=> {
@@ -71,3 +79,7 @@ const render =()=> {
 
 
 getLatestNews();
+
+// 카테고리만들기 1.버튼들에 클릭이벤트주기
+//2.카테고리별 뉴스 가져오기
+//3.그 뉴스를 보여주기
