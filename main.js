@@ -47,8 +47,16 @@ const getLatestNews = async() => {
   console.log('ddd',newsList);
 };
 
-const getNewsByCategory = (event) => {
-  console.log('category',getNewsByCategory)
+const getNewsByCategory = async(event) => {
+  const category = event.target.textContent.toLowerCase();
+
+  console.log('category',category)
+  const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&category=${category}&pageSize=${PAGE_SIZE}`)
+  const response = await fetch(url)
+  const data = await response.json()
+  console.log('ddd',data)
+  newsList = data.articles;
+  render()
 }
 
 const render =()=> {
