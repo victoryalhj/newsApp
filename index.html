@@ -19,8 +19,10 @@
         <div class="header">
           <button class="hamburger">☰</button>
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" class="search-input" placeholder="검색어입력">
+          <input type="text" class="search-input" id="search-input" placeholder="검색어입력">
+          <button onclick="getNewsByKeyword()">Search</button>
         </div>
+
         <div class="head-line">
           <svg viewBox="0 0 184 25" fill="#000">
             <path

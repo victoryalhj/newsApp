@@ -52,10 +52,23 @@ const getNewsByCategory = async(event) => {
 
   console.log('category',category)
   const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&category=${category}&pageSize=${PAGE_SIZE}`)
+  
   const response = await fetch(url)
   const data = await response.json()
   console.log('ddd',data)
   newsList = data.articles;
+  render()
+}
+
+const getNewsByKeyword =async() => {
+  const keyword = document.getElementById('search-input').value;
+  console.log(keyword)
+  const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&q=${keyword}&pageSize=${PAGE_SIZE}`)
+  
+  const response = await fetch(url);
+  const data = await response.json()
+  console.log('keyword data',data)
+  newsList = data.articles
   render()
 }
 
