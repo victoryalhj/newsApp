@@ -9,7 +9,8 @@ const menus = document.querySelectorAll('.menus button')
 const sideMenusBtn = document.querySelectorAll('.side-menus button')
 menus.forEach(menu=>menu.addEventListener('click',(event)=>{getNewsByCategory(event)}))
 sideMenusBtn.forEach(button=>button.addEventListener('click',(event)=>{getNewsByCategory(event)}))
-// console.log('mmm',menus)
+
+
 
 searchIcon.addEventListener('click',()=>{
   searchInput.classList.toggle('active');
@@ -33,26 +34,9 @@ function daysAgo(dateString) {
   return `${days}일 전`;
 }
 
-const getLatestNews = async() => {
-  const url = new URL(
-    `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${PAGE_SIZE}`
-  );
-  // console.log('uuu',url);
+let url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${PAGE_SIZE}`)
 
-  const response = await fetch(url);
-  const data = await response.json();
-
-  newsList = data.articles;
-  render()
-  console.log('ddd',newsList);
-};
-
-const getNewsByCategory = async(event) => {
-  const category = event.target.textContent.toLowerCase();
-
-  console.log('category',category)
-  const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&category=${category}&pageSize=${PAGE_SIZE}`)
-  
+const getNews = async()=>{
   const response = await fetch(url)
   const data = await response.json()
   console.log('ddd',data)
@@ -60,16 +44,29 @@ const getNewsByCategory = async(event) => {
   render()
 }
 
+const getLatestNews = async() => {
+  url = new URL(
+    `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${PAGE_SIZE}`
+  );
+    getNews()
+
+};
+
+
+const getNewsByCategory = async(event) => {
+  const category = event.target.textContent.toLowerCase();
+  url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&category=${category}&pageSize=${PAGE_SIZE}`)
+  
+  getNews()
+}
+
 const getNewsByKeyword =async() => {
   const keyword = document.getElementById('search-input').value;
-  console.log(keyword)
-  const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&q=${keyword}&pageSize=${PAGE_SIZE}`)
+  url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&q=${keyword}&pageSize=${PAGE_SIZE}`)
   
-  const response = await fetch(url);
-  const data = await response.json()
-  console.log('keyword data',data)
-  newsList = data.articles
-  render()
+  getNews()
+
+
 }
 
 const render =()=> {

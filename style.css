@@ -23,7 +23,11 @@
 .search-input.active {
   display: inline-block;
 }
-
+.header button {
+  margin: 5px 10px 0 5px;
+  border-radius: 5px;
+  border: 0.5 solid;
+}
 /* Menus */
 .header {
   margin: 5px;
@@ -83,8 +87,9 @@
     background: none;
     font-size: 24px;
   }
-
-
+  .header button {
+    display: block;
+  }
   .menus {
     display: none;
   }
