@@ -37,15 +37,30 @@ function daysAgo(dateString) {
 let url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${PAGE_SIZE}`)
 
 const getNews = async()=>{
-  const response = await fetch(url)
-  const data = await response.json()
-  console.log('ddd',data)
-  newsList = data.articles;
-  render()
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+  
+    if(response.status === 200){
+      if(data.articles.length === 0) {
+        throw new Error('No result for this search')
+      }
+
+      newsList = data.articles;
+      render()
+    }else{
+      throw new Error(data.message)
+    }
+
+
+  }catch(error){
+    errorRender(error.message || '뉴스를 불러오는 중 문제가 발생했습니다.')
+  };
 }
 
 const getLatestNews = async() => {
   url = new URL(
+    // `https://없는서버주소.com/wrong-url?pageSize=${PAGE_SIZE}`
     `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${PAGE_SIZE}`
   );
     getNews()
@@ -93,6 +108,14 @@ const render =()=> {
   
 
   document.getElementById('news-board').innerHTML = newsHTML;
+}
+
+const errorRender = (errorMessage) =>{
+  const errorHTML = `<div class="alert alert-danger" role="alert">
+    ${errorMessage}
+</div>`;
+
+document.getElementById('news-board').innerHTML = errorHTML
 }
 
 
